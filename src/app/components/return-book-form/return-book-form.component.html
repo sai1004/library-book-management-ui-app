@@ -1,0 +1,69 @@
+<form [formGroup]="returnBookform" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+        <mat-card-header>
+            <mat-card-title> Return Books form </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div Align="center">
+                <h4 class="error">{{ errorMessage }}</h4>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Book Id: 123456" formControlName="bookId" (change)="autoPopulateForm()" />
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name: " formControlName="name" />
+                        <mat-error *ngIf="returnBookform.controls['name'].hasError('required')"> Name is <strong>required</strong> </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Email: " formControlName="email" />
+                        <mat-error *ngIf="returnBookform.controls['email'].hasError('required')"> Email is <strong>required</strong> </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Status:" formControlName="status" />
+                        <mat-error *ngIf="returnBookform.controls['status'].hasError('required')"> status is <strong>required</strong> </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput [matDatepicker]="picker" placeholder="Return Date" formControlName="return_due_date" />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="returnBookform.controls['return_due_date'].hasError('required')">
+                            return due date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Mobile:" formControlName="mobile" />
+                        <mat-error *ngIf="returnBookform.controls['mobile'].hasError('required')"> mobile is <strong>required</strong> </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Fine:" formControlName="fine" />
+                        <mat-error *ngIf="returnBookform.controls['fine'].hasError('required')"> fine is <strong>required</strong> </mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- <pre> {{ profiles | json }} </pre> -->
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
